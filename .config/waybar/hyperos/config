@@ -110,19 +110,21 @@
 
 "clock": {
     "format": "{:%H:%M}",
-    "tooltip-format": "<tt><big>{calendar}</big></tt>",
-    "calendar": {
-        "mode": "month",
-        "on-scroll": 1,
-        "format": {
-            "today": "<span color='#4084ff'><b>{}</b></span>"
-        }
-    }
+    "tooltip-format": "{:%A %d de %B de %Y}"
 },
 
 "clock#date": {
   "format": "{:%a %d %b}",
-  "tooltip-format": "{:%A %d de %B de %Y}"
+  "tooltip-format": "<span font='Noto Sans Mono 11'>{calendar}</span>",
+  "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+          "today":    "<span color='#4084ff'><b>{}</b></span>",
+          "months":   "<span color='#eef2f6'><b>{}</b></span>",
+          "weekdays": "<span color='#8a93a6'><b>{}</b></span>"
+      }
+  }
 },
 
 "custom/powermenu": {

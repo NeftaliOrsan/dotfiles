@@ -70,6 +70,9 @@
       "format-ethernet": "󰈀",
       "format-disconnected": "󰤭",
       "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+      "tooltip-format-wifi": "{essid}  ({signalStrength}%)",
+      "tooltip-format-ethernet": "Cableada  {ifname}",
+      "tooltip-format-disconnected": "Sin conexión",
       "on-click": "sh ~/.config/wofi/scripts/wifimenu.sh hyperos"
 },
 
@@ -78,9 +81,11 @@
       "format-disabled": "󰂲",
       "format-off": "󰂲",
       "format-connected": "󰂱",
-      "tooltip-format": "{controller_alias}",
-      "tooltip-format-connected": "{controller_alias}\n{num_connections} conectado(s)\n{device_enumerate}",
+      "tooltip-format": "No hay dispositivos conectados",
+      "tooltip-format-connected": "{num_connections} conectado(s)\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}",
+      "tooltip-format-off": "Bluetooth apagado",
+      "tooltip-format-disabled": "Bluetooth deshabilitado",
       "on-click": "pkill wofi || sh ~/.config/wofi/scripts/btmenu.sh 'hyperos-compact' '--width 340 --height 300'"
 },
 
@@ -104,11 +109,20 @@
 },
 
 "clock": {
-    "format": "{:%H:%M}"
+    "format": "{:%H:%M}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "calendar": {
+        "mode": "month",
+        "on-scroll": 1,
+        "format": {
+            "today": "<span color='#4084ff'><b>{}</b></span>"
+        }
+    }
 },
 
 "clock#date": {
-  "format": "{:%a %d %b}"
+  "format": "{:%a %d %b}",
+  "tooltip-format": "{:%A %d de %B de %Y}"
 },
 
 "custom/powermenu": {

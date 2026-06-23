@@ -119,6 +119,11 @@ window#waybar {
   color: #ffffff;
   padding: 2px 16px;       /* la activa se "estira" como en HyperOS */
 }
+/* En hover, la activa mantiene su azul (si no, hereda el realce claro y se "blanquea") */
+#workspaces button.active:hover {
+  background-color: @accent;
+  color: #ffffff;
+}
 
 /* ---- Powermenu: rojo solo al pasar el mouse --------------------------- */
 #custom-powermenu {

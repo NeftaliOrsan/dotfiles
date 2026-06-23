@@ -105,24 +105,24 @@ window#waybar {
 #workspaces button {
   color: @txtDim;
   background-color: transparent;
+  background-image: none;        /* mata el gradiente de hover por defecto de GTK */
   padding: 2px 10px;
   margin: 2px;
   border-radius: 14px;
   transition: background-color 160ms ease, color 160ms ease;
 }
 #workspaces button:hover {
-  background-color: @glass2;
-  color: @txt;
+  background-color: #e9eef4;      /* pastilla clara opaca */
+  background-image: none;
+  color: @accent;                 /* numero AZUL -> resalta sobre el fondo claro */
 }
-#workspaces button.active {
-  background-color: @accent;
-  color: #ffffff;
-  padding: 2px 16px;       /* la activa se "estira" como en HyperOS */
-}
-/* En hover, la activa mantiene su azul (si no, hereda el realce claro y se "blanquea") */
+/* La activa: azul lleno; identica en hover (si no, el gradiente de GTK la lechaba) */
+#workspaces button.active,
 #workspaces button.active:hover {
   background-color: @accent;
+  background-image: none;
   color: #ffffff;
+  padding: 2px 16px;       /* la activa se "estira" como en HyperOS */
 }
 
 /* ---- Powermenu: rojo solo al pasar el mouse --------------------------- */

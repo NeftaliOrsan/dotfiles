@@ -1,0 +1,119 @@
+{
+  // --- Tema HyperOS (frosted glass oscuro azulado) ---
+  // El "vidrio" lo pinta el blur de Hyprland sobre las pastillas translucidas
+  // (ver hl.layer_rule "blur-waybar" en hyprland.lua). Aqui solo va estructura.
+  "margin-top": 8,
+  "margin-left": 12,
+  "margin-bottom": 0,
+  "margin-right": 12,
+  "height": 0,
+  "layer": "top",
+  "position": "top",
+  "spacing": 4,
+  "modules-left": ["custom/launcher", "clock", "clock#date"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": ["backlight", "pulseaudio", "network", "bluetooth", "battery", "custom/dunst", "custom/powermenu"],
+
+  "hyprland/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": true,
+      "on-click": "activate",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+
+  "custom/launcher": {
+      "interval": "once",
+      "format": "󰣇",
+      "on-click": "pkill wofi || wofi --show drun --term=kitty --width 450 --height 520 --columns 1 -I -s ~/.config/wofi/themes/hyperos.css",
+      "tooltip": false
+    },
+
+    "backlight": {
+      "device": "intel_backlight",
+      "max-length": "4",
+      "format": "{icon}",
+      "tooltip-format": "{percent}%",
+      "format-icons": ["󰃚","󰃛","󰃜","󰃝","󰃞","󰃟","󰃠"],
+      "on-click": "pkill -f brightmenu.py || python3 ~/.config/waybar/everforest/scripts/brightmenu.py",
+      "on-scroll-up": "brightnessctl set +5%",
+      "on-scroll-down": "brightnessctl set 5%-"
+  },
+
+  "custom/dunst": {
+      "exec": "~/.config/waybar/scripts/dunst.sh",
+      "on-click": "dunstctl set-paused toggle",
+      "restart-interval": 1,
+      "tooltip": false
+  },
+
+  "pulseaudio": {
+      "format": "{icon}",
+      "format-bluetooth": "{icon}",
+      "format-bluetooth-muted": "󰝟",
+      "format-muted": "󰝟",
+      "format-icons": {
+          "headphone": "󰋋",
+          "hands-free": "󰋎",
+          "headset": "󰋎",
+          "phone": "󰕾",
+          "portable": "󰕾",
+          "car": "󰄋",
+          "default": ["󰕿","󰖀","󰕾"]
+      },
+      "on-click-right": "pavucontrol",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+
+"network": {
+      "format-wifi": "{icon}",
+      "format-ethernet": "󰈀",
+      "format-disconnected": "󰤭",
+      "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+      "on-click": "sh ~/.config/wofi/scripts/wifimenu.sh hyperos"
+},
+
+"bluetooth": {
+      "format": "󰂯",
+      "format-disabled": "󰂲",
+      "format-off": "󰂲",
+      "format-connected": "󰂱",
+      "tooltip-format": "{controller_alias}",
+      "tooltip-format-connected": "{controller_alias}\n{num_connections} conectado(s)\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}",
+      "on-click": "pkill wofi || sh ~/.config/wofi/scripts/btmenu.sh 'hyperos-compact' '--width 340 --height 300'"
+},
+
+"battery": {
+    "bat": "BAT0",
+    "adapter": "AC",
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "max-length": 10,
+    "format": "{icon}",
+    "format-warning": "{icon}",
+    "format-critical": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "{icon}",
+    "format-alt": "{icon} {capacity}%",
+    "format-full": "{icon}",
+    "format-icons": ["󰂎","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+},
+
+"clock": {
+    "format": "{:%H:%M}"
+},
+
+"clock#date": {
+  "format": "{:%a %d %b}"
+},
+
+"custom/powermenu": {
+    "format": "󰐥",
+    "on-click": "pkill wofi || sh ~/.config/wofi/scripts/powermenu.sh 'hyperos' '--height 240'",
+    "tooltip": false
+  }
+}

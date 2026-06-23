@@ -1,0 +1,138 @@
+/* ============================================================================
+   HyperOS — frosted glass oscuro azulado
+   El blur lo aplica Hyprland sobre la capa "waybar" (hl.layer_rule blur-waybar).
+   Aqui solo definimos colores TRANSLUCIDOS (rgba) y formas redondeadas;
+   las zonas 100% transparentes NO se difuminan (ignore_alpha en la layer rule).
+   ============================================================================ */
+
+/* Paleta HyperOS oscuro */
+@define-color glass   rgba(28, 34, 42, 0.55);   /* vidrio oscuro azulado    */
+@define-color glass2  rgba(58, 68, 80, 0.45);   /* realce sutil dentro       */
+@define-color accent  rgba(64, 132, 255, 0.95);  /* azul HyperOS (activo)     */
+@define-color accentS rgba(64, 132, 255, 0.35);  /* azul suave (hover)        */
+@define-color txt     #eef2f6;                    /* texto claro               */
+@define-color txtDim  rgba(238, 242, 246, 0.62);  /* texto/iconos atenuados    */
+@define-color warn    #ffb454;
+@define-color crit    #ff5b6a;
+
+* {
+  font-family: "Noto Sans", "DejaVu Sans", "Symbols Nerd Font";
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 0;
+  /* desactiva el "halo" feo por defecto de GTK en hover/focus */
+  border: none;
+  box-shadow: none;
+}
+
+/* La barra en si: 100% transparente -> no se difumina, solo flotan las pastillas */
+window#waybar {
+  background: transparent;
+  color: @txt;
+}
+
+/* ---- Pastillas (grupos): el "vidrio esmerilado" de HyperOS -------------- */
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: @glass;
+  border-radius: 20px;
+  padding: 2px 6px;
+  margin: 2px 0;
+}
+
+/* Modulos individuales: transparentes dentro de su pastilla, con aire */
+#custom-launcher,
+#clock,
+#clock-date,
+#backlight,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#custom-dunst,
+#custom-powermenu {
+  background-color: transparent;
+  color: @txt;
+  padding: 4px 10px;
+  margin: 2px;
+  border-radius: 16px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+/* Hover: realce circular azul suave (estilo toggle HyperOS) */
+#backlight:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#battery:hover,
+#custom-dunst:hover,
+#custom-powermenu:hover {
+  background-color: @accentS;
+}
+
+/* ---- Launcher: circulo azul solido (boton principal) ------------------- */
+#custom-launcher {
+  background-color: @accent;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 4px 12px;
+  margin: 2px 2px 2px 4px;
+  border-radius: 16px;
+}
+#custom-launcher:hover {
+  background-color: rgba(64, 132, 255, 1.0);
+}
+
+/* ---- Reloj prominente (estilo HyperOS) -------------------------------- */
+#clock {
+  font-size: 14px;
+  font-weight: 700;
+  color: @txt;
+  padding-left: 12px;
+  padding-right: 6px;
+}
+#clock-date {
+  color: @txtDim;
+  font-weight: 600;
+  padding-right: 12px;
+}
+
+/* ---- Workspaces: pildoras (activo = azul lleno) ----------------------- */
+#workspaces {
+  padding: 0 2px;
+}
+#workspaces button {
+  color: @txtDim;
+  background-color: transparent;
+  padding: 2px 10px;
+  margin: 2px;
+  border-radius: 14px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+#workspaces button:hover {
+  background-color: @glass2;
+  color: @txt;
+}
+#workspaces button.active {
+  background-color: @accent;
+  color: #ffffff;
+  padding: 2px 16px;       /* la activa se "estira" como en HyperOS */
+}
+
+/* ---- Powermenu: rojo solo al pasar el mouse --------------------------- */
+#custom-powermenu {
+  color: @txtDim;
+  margin-right: 4px;
+}
+#custom-powermenu:hover {
+  background-color: rgba(255, 91, 106, 0.85);
+  color: #ffffff;
+}
+
+/* ---- Alertas de bateria (usa los states del config) ------------------- */
+#battery.warning  { color: @warn; }
+#battery.critical {
+  color: #ffffff;
+  background-color: rgba(255, 91, 106, 0.85);
+}

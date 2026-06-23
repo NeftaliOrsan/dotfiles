@@ -1,0 +1,64 @@
+/* ============================================================================
+   HyperOS — wofi COMPACTO (menu bluetooth) · mismo vidrio, fuente/padding menor
+   GTK3 NO parsea hex RGBA de 8 digitos -> usar SIEMPRE rgba() funcional.
+   ============================================================================ */
+
+@define-color glass   rgba(28, 34, 42, 0.62);
+@define-color glass2  rgba(58, 68, 80, 0.40);
+@define-color accent  rgba(64, 132, 255, 0.95);
+@define-color accentS rgba(64, 132, 255, 0.28);
+@define-color txt     #eef2f6;
+@define-color txtDim  rgba(238, 242, 246, 0.55);
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans", "Symbols Nerd Font";
+    font-size: 14px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+window {
+    margin: 0px;
+    background-color: @glass;
+    color: @txt;
+    border-radius: 20px;
+}
+
+#outer-box {
+    margin: 0px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#input {
+    background-color: @glass2;
+    color: @txt;
+    margin: 2px 2px 10px 2px;
+    padding: 9px 14px;
+    border: none;
+    border-radius: 14px;
+}
+#input image { color: @txtDim; }
+#input:focus { background-color: rgba(58, 68, 80, 0.55); }
+
+#inner-box {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#scroll { margin: 0px; padding: 0px; border: none; }
+
+#entry {
+    padding: 9px 10px;
+    margin: 2px 0px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#img { margin-right: 10px; }
+#text { color: @txt; margin: 0px 2px; }
+
+#entry:selected { background-color: @accentS; }
+#entry:selected #text { color: #ffffff; }

@@ -1,0 +1,75 @@
+@import ".config/wofi/colors/everforest.css";
+
+/* Variante compacta de everforest.css: misma estética, fuente más pequeña
+   y márgenes más ajustados. Pensada para menús de acciones cortas
+   (bluetooth) donde no se usa la barra de búsqueda. */
+
+* {
+    font-family: JetBrainsMono Nerd Font, FontAwesome;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+}
+
+window {
+    margin: 0px;
+    background-color: @fg;
+    color: @bg0;
+
+    border-radius: 15px;
+
+    border-bottom-width: 5px;
+    border-bottom-color: #7d6a40;
+    border-bottom-style: solid;
+}
+
+#outer-box {
+    margin: 0px;
+    border-radius: 0px;
+}
+
+#input {
+    background-color: @green;
+    color: @bg0;
+
+    margin: 10px;
+    padding: 8px;
+    border: none;
+
+    border-bottom-width: 4px;
+    border-bottom-color: #556a35;
+    border-bottom-style: solid;
+}
+
+#inner-box {
+    margin: 12px;
+    padding: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#scroll {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+#text {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+#entry {
+    border: none;
+    padding: 8px;
+    margin: 0px;
+}
+
+#entry:selected {
+    background-color: @bg0;
+    color: @fg;
+
+    border-bottom-width: 4px;
+    border-bottom-color: #161a1d;
+    border-bottom-style: solid;
+}

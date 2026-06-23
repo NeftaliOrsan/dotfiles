@@ -1,0 +1,90 @@
+@import "../colors/everforest.css";
+
+/* margin: top right bottom left  -> espacio FUERA del elemento */
+/* padding: top right bottom left -> espacio DENTRO del elemento */
+
+* {
+  font-family: "Noto Sans", "DejaVu Sans", "Symbols Nerd Font";
+  font-size: 12px;
+  font-weight: bold;
+  min-height: 0;            /* sin esto, GTK reserva una altura mínima grande */
+}
+
+/* Isla flotante: 4 esquinas redondeadas, sin borde inferior de la ventana */
+window#waybar {
+  background-color: @fg;
+  color: @bg0;
+  border-radius: 12px;
+}
+
+#custom-launcher,
+#clock,
+#clock-date,
+#workspaces,
+#backlight,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#custom-dunst,
+#custom-powermenu {
+  background-color: @bg0;
+  color: @fg;
+
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+
+  border-bottom-width: 2px;
+  border-bottom-color: #161a1d;
+  border-bottom-style: solid;
+}
+
+#workspaces {
+  padding: 0px;
+}
+
+#workspaces button.active {
+  background-color: @blue;
+  color: @bg0;
+
+  border-radius: 8px;
+  margin-bottom: -2px;
+
+  border-bottom-width: 2px;
+  border-bottom-color: #366660;
+  border-bottom-style: solid;
+}
+
+#custom-launcher {
+  background-color: @green;
+  color: @bg0;
+  border-bottom-color: #556a35;
+
+  margin-left: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+#custom-powermenu {
+  background-color: @red;
+  color: @bg0;
+  border-bottom-color: #951c1f;
+
+  margin-right: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Alertas de batería según el % (usa los "states" del config) */
+/* .warning y .critical tienen mayor especificidad que el grupo #battery,
+   así que ganan sin importar el orden. */
+#battery.warning {
+  color: @orange;
+}
+#battery.critical {
+  color: @red;
+  background-color: @bg_red;   /* fondo rojizo para que salte a la vista */
+}

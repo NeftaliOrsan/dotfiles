@@ -25,6 +25,11 @@ set -u
 # Si alguno murio, lo relanzamos UNA vez (sin bucle, para no entrar en crash-loop).
 # hyprlock re-ancla el lock vivo gracias a misc.allow_session_lock_restore = true
 # (en hyprland.lua). NO se usa dpms ni se señaliza waybar: solo se lanza uno nuevo.
+#
+# Se lanzan DIRECTO con 'setsid -f', NO con 'hyprctl dispatch exec': bajo config Lua
+# ese dispatch se traduce a Lua invalido (return hl.dispatch(exec hyprlock)) y aborta
+# con "')' expected near 'hyprlock'". Ese bug fue por el que el resume del 25-jun NO
+# relanzo el locker tras un crash de hyprlock y hubo que reiniciar a mano.
 sleep 1   # dar margen a que los outputs se estabilicen antes de relanzar
-pidof hyprlock >/dev/null || hyprctl dispatch exec hyprlock
-pidof waybar   >/dev/null || hyprctl dispatch exec "waybar -c /home/neftalir/.config/waybar/hyperos/config -s /home/neftalir/.config/waybar/hyperos/style.css"
+pidof hyprlock >/dev/null || setsid -f hyprlock >/dev/null 2>&1
+pidof waybar   >/dev/null || setsid -f waybar -c /home/neftalir/.config/waybar/hyperos/config -s /home/neftalir/.config/waybar/hyperos/style.css >/dev/null 2>&1
